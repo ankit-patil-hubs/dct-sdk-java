@@ -1,3 +1,13 @@
+#terraform {
+#  required_providers {
+#    delphix = {
+#      source = "delphix.com/delphix-integrations/delphix"
+#      version = "3.3.0"
+#      #version = "3.1.0"
+#    }
+#  }
+#}
+
 terraform {
   required_providers {
     delphix = {
@@ -13,7 +23,6 @@ provider "delphix" {
   key               = "1.jTElhpXIao7pTNzVCYdkj1HpGXriTBlYbPha1Di8HjvMF6nESA1crkGlljowDs7y"
   host              = "ubuntu-2-uv49-qar-125346-27a4593a.dlpxdc.co"
 }
-
 
 resource "delphix_appdata_dsource" "test_app_data_dsource_second" {
   source_value                  = "13-APPDATA_STAGED_SOURCE_CONFIG-122"
@@ -35,7 +44,7 @@ resource "delphix_appdata_dsource" "test_app_data_dsource_second" {
         sourceHostAddress : "psrc.dlpxdc.co"
       }
     ],
-    postgresPort : 5436,
+    postgresPort : 5433,
     mountLocation : "/datadrive1/provision/ds-assetmanagement-neur-tntnpk-dev-rocsexecution-1"
   })
   sync_parameters = jsonencode({
