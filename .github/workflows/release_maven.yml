@@ -2,12 +2,12 @@
 # Copyright (c) 2022, 2023 by Delphix. All rights reserved.
 #
 
-name: Pre-Release Created
+name: release
 
 on:
- push:
-    branches:
-      - main
+  push:
+    tags:
+      - 'v*'
 
 jobs:
   publish_java_client:
