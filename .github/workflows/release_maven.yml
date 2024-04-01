@@ -8,6 +8,9 @@ on:
   push:
     tags:
       - 'v*'
+permissions:
+  contents: read
+  pages: write 
 
 jobs:
   publish_java_client:
