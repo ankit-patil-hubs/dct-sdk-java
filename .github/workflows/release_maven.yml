@@ -31,8 +31,8 @@ jobs:
           gpg-passphrase: MAVEN_GPG_PASSPHRASE
 
       - name: Make and publish java client library
-        run: echo "Name: ${{ github.event.release.name }} Description: ${{ github.event.release.body }}"
-        run: ./publish_java_client_libraries.sh ${{ github.event.release.tag_name }}
+        run: echo "Name: ${{ github.event.release.name }} Description: ${{ github.event.release.body }} V: ${{ github.event.release.tag_name }}"
+        #run: ./publish_java_client_libraries.sh ${{ github.event.release.tag_name }}
         env:
           MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
