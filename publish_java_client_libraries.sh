@@ -23,11 +23,12 @@ curl -O https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/7.
 ./gradlew -PvirtualizationVersion=$version :app:mergeOpenApiFiles
 mkdir -p java-api-package || die "failed to mkdir java-api-package"
 java -jar openapi-generator-cli-7.4.0.jar generate  \
-    -i app/src/main/resources/dct-api-schema/api.yaml \
+    -i api.yaml \
     -g java -o java-api-package --global-property skipFormModel=false \
     --additional-properties \
     artifactVersion=$version,invokerPackage=com.delphix.dct,modelPackage=com.delphix.dct.models,apiPackage=com.delphix.dct.api,artifactId=dct-api,groupId=com.delphix
 [[ $? -eq 0 ]] || die "Failed to generate Java client library"
+
 
 cd java-api-package || die "failed to cd into java-api-package"
 
