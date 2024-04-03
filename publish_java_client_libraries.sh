@@ -29,4 +29,7 @@ java -jar openapi-generator-cli-7.4.0.jar generate  \
     artifactVersion=$version,invokerPackage=com.delphix.dct,modelPackage=com.delphix.dct.models,apiPackage=com.delphix.dct.api,artifactId=dct-api,groupId=com.delphix
 [[ $? -eq 0 ]] || die "Failed to generate Java client library"
 
+
+cd java-api-package || die "failed to cd into java-api-package"
+
 mvn verify gpg:sign install:install deploy:deploy -DaltDeploymentRepository=ossrh::default::https://s01.oss.sonatype.org/service/local/staging/deploy/maven2 || die "failed to mvn verify"
