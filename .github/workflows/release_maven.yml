@@ -31,10 +31,11 @@ jobs:
           gpg-passphrase: MAVEN_GPG_PASSPHRASE
 
       - name: Make and publish java client library
-        run: |
-         echo "Tag name from GITHUB_REF_NAME: $GITHUB_REF_NAME"
-         echo "Tag name from github.ref_name: ${{  github.ref_name }}"
-        #run: ./publish_java_client_libraries.sh ${{ github.event.release.tag_name }}
+        run: ./publish_java_client_libraries.sh ${{  github.ref_name }}
+        # run: |
+        #  #echo "Tag name from GITHUB_REF_NAME: $GITHUB_REF_NAME"
+        #  #echo "Tag name from github.ref_name: ${{  github.ref_name }}"
+        #  run: ./publish_java_client_libraries.sh ${{  github.ref_name }}
         env:
           MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
