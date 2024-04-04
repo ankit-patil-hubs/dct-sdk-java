@@ -7,6 +7,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Copy the Readmes
+        run: |
+          cp "./LICENSE" "./src/ankit/"
       - name: Set up Maven Central Repository
         uses: actions/setup-java@v4
         with:
@@ -19,4 +22,4 @@ jobs:
         run: mvn --batch-mode deploy
         env:
           MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-          MAVEN_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
+          MAVEN_PASSWORD: ${{ secrets.OSSRH_PASSWORDww }}
