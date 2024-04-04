@@ -8,9 +8,6 @@ on:
   push:
     tags:
       - 'v*'
-permissions:
-  contents: read
-  pages: write 
 
 jobs:
   publish_java_client:
@@ -30,12 +27,8 @@ jobs:
           gpg-private-key: ${{ secrets.OSSRH_GPG_SECRET_KEY }}
           gpg-passphrase: MAVEN_GPG_PASSPHRASE
 
-      - name: Make and publish java client library
-        run: ./publish_java_client_libraries.sh ${{  github.ref_name }}
-        # run: |
-        #  #echo "Tag name from GITHUB_REF_NAME: $GITHUB_REF_NAME"
-        #  #echo "Tag name from github.ref_name: ${{  github.ref_name }}"
-        #  run: ./publish_java_client_libraries.sh ${{  github.ref_name }}
+      - name: Publish package
+        run: mvn verify gpg:sign install:install deploy:deploy
         env:
           MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
